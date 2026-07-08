@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a1a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a2a2a;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-accent {
+    box-shadow:
+      0 0 20px rgba(0, 212, 255, 0.3),
+      0 0 40px rgba(0, 212, 255, 0.2),
+      0 0 60px rgba(0, 212, 255, 0.1);
+  }
+
+  .glow-magenta {
+    box-shadow:
+      0 0 20px rgba(255, 0, 255, 0.3),
+      0 0 40px rgba(255, 0, 255, 0.2),
+      0 0 60px rgba(255, 0, 255, 0.1);
+  }
+
+  .glow-purple {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 40px rgba(139, 92, 246, 0.2),
+      0 0 60px rgba(139, 92, 246, 0.1);
+  }
+
+  .premium-btn {
+    background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+    transition: all 0.3s ease;
+  }
+
+  .premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 30px rgba(0, 212, 255, 0.4),
+      0 0 60px rgba(139, 92, 246, 0.2);
+  }
+
+  .premium-btn-dark {
+    background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .premium-btn-dark:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4ff 0%, #ff00ff 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ambient-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
