@@ -15,7 +15,7 @@ import { LogProvider } from './context/LogContext';
 import { Welcome } from './components/rare/welcome';
 import { Tour, useTour } from './components/rare/tour';
 import { Workspace } from './components/rare/workspace';
-import { Pricing } from './components/rare/pricing';
+import   Pricing  from './components/rare/pricing';
 import { Footer } from './components/rare/footer';
 import { DebugLogs } from './components/rare/debug-logs';
 
