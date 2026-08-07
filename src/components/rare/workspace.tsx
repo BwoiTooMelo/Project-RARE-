@@ -126,7 +126,7 @@ export const Workspace: React.FC = () => {
     addLog('AUDIO', isPlayingAudio ? 'Audio playback paused.' : 'Audio playback started for canvas synchronization.');
   };
 
-  // Seedance 2.0 Video Generation Trigger
+  // RARE Pulse Engine — Beat-Reactive Visual Generation Trigger
   const handleGenerate = () => {
     if (!prompt.trim()) {
       addLog('AI_PROMPT', 'Warning: Prompt definition empty. Awaiting user parameters.');
@@ -134,13 +134,13 @@ export const Workspace: React.FC = () => {
     }
 
     setIsGenerating(true);
-    addLog('AI_PROMPT', `Seedance 2.0 compiled tokens: "${prompt}" [Style: ${selectedStyle}]`);
-    addLog('RENDER', 'High-fidelity prompt-reactive visual canvas matrix actively computing frames.');
+    addLog('AI_PROMPT', `Pulse Engine compiled tokens: "${prompt}" [Style: ${selectedStyle}]`);
+    addLog('RENDER', 'Beat-reactive visual canvas actively computing frames.');
 
     setTimeout(() => {
       setIsGenerating(false);
       setGenerationsLeft(prev => Math.max(0, prev - 1));
-      addLog('RENDER', 'Seedance 2.0 buffer compilation finished. Presentation matrix active.');
+      addLog('RENDER', 'Pulse Engine buffer compilation finished. Presentation matrix active.');
     }, 2500);
   };
 
@@ -374,7 +374,7 @@ export const Workspace: React.FC = () => {
               }`}
             >
               <Sparkles className="w-3.5 h-3.5" />
-              {isGenerating ? 'Compiling Render...' : 'Generate Render [Seedance 2.0]'}
+              {isGenerating ? 'Compiling Render...' : 'Generate Render [RARE Pulse Engine]'}
             </button>
             <div className="text-right">
               <p className="text-[11px] text-neutral-500 font-mono">Quota Allotment</p>
