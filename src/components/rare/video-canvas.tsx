@@ -139,7 +139,7 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
       ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       ctx.font = '10px monospace';
       ctx.fillText(
-        `SEEDANCE 2.0 // RENDER STATE: ${isGenerating ? 'COMPILING' : 'ACTIVE'}`,
+        `RARE PULSE ENGINE // RENDER STATE: ${isGenerating ? 'COMPILING' : 'ACTIVE'}`,
         12,
         20
       );
@@ -166,7 +166,7 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
       {isGenerating && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <p className="text-xs text-zinc-500 font-mono tracking-wider animate-pulse">
-            COMPILING RENDER // SEEDANCE 2.0
+            COMPILING RENDER // RARE PULSE ENGINE
           </p>
         </div>
       )}
