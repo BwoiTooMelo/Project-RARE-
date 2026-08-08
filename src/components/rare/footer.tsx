@@ -13,7 +13,7 @@ export function Footer() {
               <span className="text-lg font-bold text-white">Project RARE</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Premium AI video generation powered by Seedance 2.0. Create stunning cinematic content in seconds.
+              Real-time, beat-reactive video generation powered by the RARE Pulse Engine. Create stunning cinematic content instantly.
             </p>
           </div>
 
