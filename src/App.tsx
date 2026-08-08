@@ -171,10 +171,10 @@ function AppContent() {
               <div className="glass-panel rounded-2xl p-8 border border-rare-border">
                 <h1 className="text-4xl font-bold text-white mb-6">About Project <span className="gradient-text">RARE</span></h1>
                 <div className="space-y-6 text-gray-300 leading-relaxed">
-                  <p className="text-lg">Project RARE is a next-generation AI video production platform powered by <span className="text-white font-medium">Seedance 2.0</span>, designed to transform your creative vision into stunning cinematic content in seconds.</p>
+                  <p className="text-lg">Project RARE is a real-time, beat-reactive visual generation platform powered by the <span className="text-white font-medium">RARE Pulse Engine</span>, designed to transform your audio into stunning cinematic content instantly.</p>
                   <div className="grid md:grid-cols-2 gap-6 my-8">
                     {[
-                      { title: 'Multi-Shot Intelligence', body: 'Our AI understands narrative context and creates seamless transitions between scenes, maintaining visual coherence throughout your video.' },
+                      { title: 'Reactive Visual Themes', body: 'Prompt keywords select curated visual themes and color palettes, rendered live with smooth, coherent transitions throughout your video.' },
                       { title: 'Audio-Reactive Rendering', body: 'Upload your audio stems and watch the canvas respond dynamically to rhythm, melody, and energy of your soundtrack.' },
                       { title: 'Style Archives', body: 'Choose from curated visual aesthetics: Afrofuturism, Cinematic Noir, and Cyber Neon - each with unique color palettes and visual signatures.' },
                       { title: 'Premium Exports', body: 'Download real MP4 files with audio encoded using WebCodecs at 720p, 1080p or 4K depending on your plan.' },
