@@ -3,7 +3,7 @@ import { useLocalization } from '../../context/LocalizationContext';
 import { useLogs } from '../../context/LogContext';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabase-client';
-import { Check, Shield, Zap, Sparkles, HelpCircle } from 'lucide-react';
+import { Check, Shield, Zap, Sparkles, HelpCircle, Clock } from 'lucide-react';
 import type { SubscriptionPlan } from '../../context/AuthContext';
 
 interface PricingPlan {
@@ -16,6 +16,7 @@ interface PricingPlan {
   features: string[];
   icon: React.ReactNode;
   popular?: boolean;
+  comingSoon?: boolean;
 }
 
 declare global {
@@ -45,6 +46,7 @@ export default function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [waitlistJoined, setWaitlistJoined] = useState(false);
 
   // Load the Paystack inline script once. This is the official client-side
   // SDK — it only ever sees the PUBLIC key, never the secret key.
@@ -70,54 +72,53 @@ export default function Pricing() {
       id: 'creator_free',
       planKey: 'free',
       name: 'Creator Free',
-      desc: 'Explore the foundations of multi-shot synthesis.',
+      desc: 'Real-time beat-reactive rendering, no cost, no catch.',
       priceUSD: 0,
       priceZAR: 0,
       icon: <HelpCircle className="w-5 h-5 text-gray-400" />,
       features: [
         '15-second maximum clip generation',
-        'Standard Seedance 2.0 rendering baseline',
-        '50 standard generations per month',
+        'Standard RARE Pulse Engine rendering',
+        'Unlimited monthly renders',
         'Stereo audio multiplexer tracks',
         '720p export resolution',
         'Community discord support access'
       ]
     },
     {
-      id: 'production_pro',
+      id: 'pulse_pro',
       planKey: 'pro',
-      name: 'Production Pro',
-      desc: 'Cinematic clarity engineered for professional creators.',
-      priceUSD: 30,
-      priceZAR: 530,
+      name: 'Pulse Pro',
+      desc: 'Longer clips, higher resolution, zero watermark.',
+      priceUSD: 9,
+      priceZAR: 99,
       icon: <Zap className="w-5 h-5 text-rare-accent-cyan" />,
       popular: true,
       features: [
-        'Full 20-second multi-shot timeline expansion',
-        'High-fidelity canvas matrix active compute priority',
-        'Unlimited monthly generation architecture',
-        'Lossless Web Audio API spatial export tracking',
+        'Full 20-second clip generation',
+        'Unlimited monthly renders',
         'Up to 1080p export resolution',
-        'Advanced style matrices (Afrofuturism, Cinematic Noir)',
-        'Dedicated server queue response lanes'
+        'No RARE watermark on exports',
+        'All Style Archives + early access to new themes',
+        'Priority email support'
       ]
     },
     {
-      id: 'universal_studio',
+      id: 'studio_waitlist',
       planKey: 'premium',
-      name: 'Universal Studio',
-      desc: 'Uncapped computing power for multi-agent enterprise studios.',
-      priceUSD: 100,
-      priceZAR: 1800,
+      name: 'RARE Studio AI',
+      desc: 'Real generative AI cinematic rendering — in development.',
+      priceUSD: 0,
+      priceZAR: 0,
       icon: <Sparkles className="w-5 h-5 text-rare-accent-magenta" />,
+      comingSoon: true,
       features: [
-        'All Pro tier systems included',
-        'Up to 4K Ultra HD export resolution',
-        'Dedicated model retraining and prompt weights',
-        'Custom CC-compliant training archival lanes',
-        'API endpoint access permissions',
-        '24/7 dedicated engineering support protocols',
-        'Zero-latency production fallback channels'
+        'True AI-generated cinematic video from your prompt',
+        'Powered by real generative video models, not procedural rendering',
+        'Being built now — funded rollout in progress',
+        'Waitlist members get first access + founder pricing',
+        'Up to 4K Ultra HD export resolution (planned)',
+        'API endpoint access (planned)'
       ]
     }
   ];
@@ -159,7 +160,20 @@ export default function Pricing() {
     [addLog, refreshPlan]
   );
 
+  const handleJoinWaitlist = (plan: PricingPlan) => {
+    addLog('SYSTEM', `${user?.email ?? 'Anonymous user'} joined the RARE Studio AI waitlist.`);
+    setWaitlistJoined(true);
+    // TODO: once ready, replace this with a real Supabase insert into a
+    // `studio_waitlist` table so signups are counted for the NYDA report.
+    alert("You're on the list! We'll email you the moment RARE Studio AI opens, with founder pricing locked in.");
+  };
+
   const handleCheckout = (plan: PricingPlan) => {
+    if (plan.comingSoon) {
+      handleJoinWaitlist(plan);
+      return;
+    }
+
     if (plan.priceUSD === 0) {
       addLog('AUTH', 'Creator Free workspace tier activated permanently.');
       return;
@@ -218,10 +232,10 @@ export default function Pricing() {
     <section className="py-24 px-4 max-w-7xl mx-auto relative z-10">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 uppercase">
-          Predictable Architecture. <span className="gradient-text">Infinite Scale.</span>
+          Simple Pricing. <span className="gradient-text">Real Value.</span>
         </h2>
         <p className="text-gray-400 text-lg">
-          Select your studio resource cluster. Auto-detecting localized infrastructure configuration for <span className="text-white font-semibold">{region}</span>.
+          Built for <span className="text-white font-semibold">{region}</span> creators — start free, upgrade when you're ready.
         </p>
 
         {/* Annual / Monthly Toggle */}
@@ -252,11 +266,16 @@ export default function Pricing() {
               key={plan.id}
               className={`glass-panel rounded-2xl p-8 flex flex-col justify-between relative transition-all duration-300 ${
                 plan.popular ? 'border-rare-accent-cyan/30 shadow-[0_0_50px_rgba(0,212,255,0.05)]' : 'border-white/5'
-              }`}
+              } ${plan.comingSoon ? 'border-rare-accent-magenta/20' : ''}`}
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold tracking-widest uppercase bg-rare-accent-cyan text-black px-4 py-1 rounded-full shadow-lg">
-                  RECOMMENDED CLUSTER
+                  MOST POPULAR
+                </span>
+              )}
+              {plan.comingSoon && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold tracking-widest uppercase bg-rare-accent-magenta text-black px-4 py-1 rounded-full shadow-lg flex items-center gap-1">
+                  <Clock className="w-3 h-3" /> COMING SOON
                 </span>
               )}
 
@@ -267,14 +286,22 @@ export default function Pricing() {
                 </div>
                 <p className="text-sm text-gray-400 mb-6 leading-relaxed min-h-[40px]">{plan.desc}</p>
 
-                <div className="mb-8 flex items-baseline gap-1">
-                  <span className="text-4xl font-black tracking-tight text-white">
-                    {currency === 'ZAR' ? 'R' : '$'}{displayPrice.toLocaleString()}
-                  </span>
-                  <span className="text-xs tracking-wider text-gray-500 uppercase">
-                    /{isAnnual ? 'year' : 'mo'}
-                  </span>
-                </div>
+                {!plan.comingSoon ? (
+                  <div className="mb-8 flex items-baseline gap-1">
+                    <span className="text-4xl font-black tracking-tight text-white">
+                      {currency === 'ZAR' ? 'R' : '$'}{displayPrice.toLocaleString()}
+                    </span>
+                    <span className="text-xs tracking-wider text-gray-500 uppercase">
+                      /{isAnnual ? 'year' : 'mo'}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="mb-8 flex items-baseline gap-1">
+                    <span className="text-2xl font-black tracking-tight text-white">
+                      Free to join waitlist
+                    </span>
+                  </div>
+                )}
 
                 <div className="h-[1px] bg-white/5 w-full mb-8" />
 
@@ -290,7 +317,7 @@ export default function Pricing() {
 
               <button
                 onClick={() => handleCheckout(plan)}
-                disabled={loadingPlan !== null || isCurrentPlan}
+                disabled={loadingPlan !== null || isCurrentPlan || (plan.comingSoon && waitlistJoined)}
                 className={`w-full py-4 rounded-xl font-bold uppercase tracking-wider text-xs transition-all duration-300 ${
                   plan.popular
                     ? 'premium-btn text-black'
@@ -301,10 +328,12 @@ export default function Pricing() {
                   <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                 ) : isCurrentPlan ? (
                   'Current Plan'
+                ) : plan.comingSoon ? (
+                  waitlistJoined ? "You're on the list" : 'Join the Waitlist'
                 ) : plan.priceUSD === 0 ? (
-                  'Deploy Free Studio'
+                  'Start Free'
                 ) : (
-                  'Initialize Gateway'
+                  'Upgrade to Pro'
                 )}
               </button>
             </div>
