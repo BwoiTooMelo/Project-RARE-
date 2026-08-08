@@ -39,7 +39,7 @@ const TOUR_STEPS: TourStep[] = [
   {
     id: 'render',
     title: 'Render Button',
-    description: 'Execute the Seedance 2.0 compile pipeline and download uncorrupted media.',
+    description: 'Execute the RARE Pulse Engine compile pipeline and download uncorrupted media.',
     icon: <Play className="w-6 h-6" />,
     targetId: 'render-button',
     position: 'left',
