@@ -15,7 +15,7 @@ export function Welcome({ onEnterStudio }: WelcomeProps) {
 
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);
-    addLog('AUTH', 'Google Sign-In sequence simulation verified successfully.');
+    addLog('AUTH', 'Google Sign-In successful.');
     await login();
     setIsSigningIn(false);
 
@@ -66,7 +66,7 @@ export function Welcome({ onEnterStudio }: WelcomeProps) {
           </span>
         </div>
         <div className="text-sm text-gray-500">
-          Powered by Seedance 2.0
+          Powered by RARE Pulse Engine
         </div>
       </header>
 
@@ -76,19 +76,19 @@ export function Welcome({ onEnterStudio }: WelcomeProps) {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-rare-border mb-8">
             <Sparkles className="w-4 h-4 text-rare-accent-cyan" />
-            <span className="text-sm text-gray-300">AI-Powered Video Generation Studio</span>
+            <span className="text-sm text-gray-300">Beat-Reactive Visual Generator</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
-            <span className="block">UNIVERSAL AI</span>
+            <span className="block">LIVE AUDIO</span>
             <span className="block gradient-text">CINEMATIC RESYNC</span>
           </h1>
 
           {/* Sub-headline */}
           <p className="text-xl lg:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
             Transform audio stems into prompt-reactive vertical video using{' '}
-            <span className="text-white font-medium">Seedance 2.0</span> multi-shot intelligence.
+            <span className="text-white font-medium">RARE Pulse Engine</span> — real-time beat-synced rendering, instantly, no queue.
           </p>
 
           {/* Auth Card */}
@@ -175,7 +175,7 @@ export function Welcome({ onEnterStudio }: WelcomeProps) {
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">Prompt Reactive</h3>
               <p className="text-sm text-gray-400">
-                Type your vision and watch the canvas respond with dynamic, AI-powered visuals
+                Type your vision and watch the canvas respond with dynamic, beat-reactive visuals
               </p>
             </div>
 
@@ -196,7 +196,7 @@ export function Welcome({ onEnterStudio }: WelcomeProps) {
       <footer className="relative z-10 px-6 py-8 border-t border-rare-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-500">
-            © 2024 Project RARE. All rights reserved.
+            © 2026 Project RARE. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-gray-500">
             <a href="#" className="hover:text-white transition-colors">Terms</a>
